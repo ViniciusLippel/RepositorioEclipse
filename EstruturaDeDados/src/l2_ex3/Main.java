@@ -4,27 +4,32 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Scanner entrada = new Scanner(System.in);
-		String nome;
-		int anoNasc;
-		double renda;
-		
-		System.out.print("Nome: ");
-		nome = entrada.nextLine();
-		System.out.print("Ano de nascimento: ");
-		anoNasc = entrada.nextInt();
-		System.out.print("Renda mensal: ");
-		renda = entrada.nextDouble();
+		int menu = 0;
 		
 		Cliente pessoa = new Cliente();
-		pessoa.construct(nome, anoNasc, renda);
-		pessoa.inserir();
 		
-		System.out.print("Consultar cliente (indice): ");
-		int i = entrada.nextInt();
-		pessoa.consultar(i);
+		while (menu!=3) {
+			System.out.println("\nMENU \n1- Inserir Cliente. \n2- Consultar Clientes. \n3- Sair");
+			menu = entrada.nextInt();
+			
+			if (menu==1) {
+				
+				pessoa.lerDados();
+				pessoa.inserir();
+			}
+			
+			else if (menu==2)
+				pessoa.consultar();
+			
+		}
 		
+		System.out.println("\nNúmero de clientes com renda acima da média: "+pessoa.acimaMedia());
+		System.out.println("Número de clientes nascidos entre 1980 e 2000: "+pessoa.entreAnos());
+		
+		entrada.close();
+			
 	}
 
 }

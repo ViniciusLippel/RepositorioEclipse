@@ -1,38 +1,58 @@
 package l2_ex2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Pessoa {
-	String nome;
-	String endereco;
-	String telefone;
-	List<Pessoa> dado= new ArrayList<Pessoa>();
 	
 	Scanner entrada = new Scanner(System.in);
+
+	private String nome;
+	private String endereco;
+	private String telefone;
 	
-	public void addPessoa() {
-		Pessoa dados = new Pessoa();
-		dados.nome = entrada.nextLine();
-		dados.endereco = entrada.nextLine();
-		dados.telefone = entrada.nextLine();
-		//JOptionPane.showMessageDialog(null,"Dados inseridos");
-		dado.add(dados);
+	private ArrayList<String> nomes = new ArrayList<String>();
+	private ArrayList<String> enderecos = new ArrayList<String>();
+	private ArrayList<String> telefones = new ArrayList<String>();
+	
+	public void construct(String nome, String endereco, String telefone) {
+		this.nome = nome;
+		this.endereco = endereco;
+		this.telefone = telefone;
 	}
 	
-	@Override
-	public String toString() {
-		return "Nome: "+this.nome+"\nEndereço: "+this.endereco+"\nTelefone: "+this.telefone;
+	public void inserir() {
+		nomes.add(this.nome);
+		enderecos.add(this.endereco);
+		telefones.add(this.telefone);
 	}
 	
-	public void consulta() {
-		for(Pessoa  info : dado) {
-			System.out.println(info.toString());
-		}
+	public void lerDados() {
+		entrada.nextLine();
+		System.out.print("\nNome: ");
+		nome = entrada.nextLine();
+		System.out.print("Endereço: ");
+		endereco = entrada.nextLine();
+		System.out.print("Telefone: ");
+		telefone = entrada.nextLine();
+		
+		this.construct(nome, endereco, telefone);
 	}
 	
+	public void escrever(int i) {
+		System.out.println("\nNome: "+nomes.get(i));
+		System.out.println("Endereço: "+enderecos.get(i));
+		System.out.println("Telefone: "+telefones.get(i));
+	}
+	
+	public void consultar() throws InterruptedException {
+		System.out.print("\nConsultar pessoas (indice): ");
+		int i = entrada.nextInt();
+		if (i<nomes.size())
+			this.escrever(i);
+		else
+			System.out.println("Pessoa inexistente");
+		Thread.sleep(1000);
+	}
+
 }
