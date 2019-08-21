@@ -1,8 +1,6 @@
 package json;
 
 import java.io.FileWriter;
-
-
 import java.io.IOException;
 import java.util.Scanner;
 import com.google.gson.Gson;
