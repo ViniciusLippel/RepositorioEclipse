@@ -1,4 +1,4 @@
-package lista4_Matriz;
+package lista4_Vetor;
 
 import java.util.Scanner;
 
