@@ -16,35 +16,29 @@ public class L4_ex9 {
 		System.out.print("Tamanho da senha: ");
 		t = entrada.nextInt();
 		
-		for (int i=0; i<=t; i++) {
+		int i=0;
+		while (i<t) {
 			
 			if (i%2==0) {
-				iL=2;
-				while (!alfabeto[iL].equals("a") && !alfabeto[iL].equals("e") && !alfabeto[iL].equals("i") && 
-						!alfabeto[iL].equals("o") && !alfabeto[iL].equals("u")) {
-					iL = new Random().nextInt(alfabeto.length);
-					System.out.println("Randomizei cons");
-					if (!alfabeto[iL].equals("a") && !alfabeto[iL].equals("e") && !alfabeto[iL].equals("i") && 
-							!alfabeto[iL].equals("o") && !alfabeto[iL].equals("u"))
-						senha = senha.concat(alfabeto[iL]);
+				iL = new Random().nextInt(alfabeto.length);
+				if (!alfabeto[iL].equals("a") && !alfabeto[iL].equals("e") && !alfabeto[iL].equals("i") && !alfabeto[iL].equals("o") && !alfabeto[iL].equals("u")) {
+					senha = senha.concat(alfabeto[iL]);
+					i++;
 				}
 			}
 			
 			else {
-				iL=0;
-				while (alfabeto[iL].equals("a") || alfabeto[iL].equals("e") || alfabeto[iL].equals("i") || 
-						alfabeto[iL].equals("o") || alfabeto[iL].equals("u")) {
-					iL = new Random().nextInt(alfabeto.length);
-					System.out.println("Randomizei vogal");
-					if (alfabeto[iL].equals("a") || alfabeto[iL].equals("e") || alfabeto[iL].equals("i") || 
-							alfabeto[iL].equals("o") || alfabeto[iL].equals("u"))
-						senha = senha.concat(alfabeto[iL]);
+				iL = new Random().nextInt(alfabeto.length);
+				if (alfabeto[iL].equals("a") || alfabeto[iL].equals("e") || alfabeto[iL].equals("i") || alfabeto[iL].equals("o") || alfabeto[iL].equals("u")) {
+					senha = senha.concat(alfabeto[iL]);
+					i++;
 				}
-			
+	
 			}
+			
 		}
 		
-		System.out.println("Senha: "+senha);
+		System.out.println("\nSenha: "+senha);
 	}
 
 }
