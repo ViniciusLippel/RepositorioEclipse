@@ -36,6 +36,32 @@ public class Cone {
 		return g;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cone [z=");
+		builder.append(z);
+		builder.append(", r=");
+		builder.append(r);
+		builder.append(", nivel=");
+		builder.append(nivel);
+		builder.append(", geratriz()=");
+		builder.append(geratriz());
+		builder.append(", areaTotal()=");
+		builder.append(areaTotal());
+		builder.append(", areaFundo()=");
+		builder.append(areaFundo());
+		builder.append(", areaLateral()=");
+		builder.append(areaLateral());
+		builder.append(", litros()=");
+		builder.append(litros());
+		builder.append(", latas()=");
+		builder.append(latas());
+		builder.append(", precoTotal()=");
+		builder.append(precoTotal());
+		builder.append("]");
+		return builder.toString();
+	}
 	public double areaTotal() {
 		return 3.14 * this.r * (this.r + this.geratriz());
 	}
@@ -57,7 +83,7 @@ public class Cone {
 	}
 	
 	public double precoTotal() {
-		double preco=0;
+		double preco =0;
 		if(this.nivel==1)
 			preco = this.latas()*238.90;
 		else if(this.nivel==2)
