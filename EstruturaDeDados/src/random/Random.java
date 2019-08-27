@@ -16,11 +16,12 @@ public class Random {
 	}
 	
 	public int gerarAleatorioIntervalo(int min, int max) {
-		int n1=2, n2;
+		int n1=2, n2, random=0;
 		while(n1<=1) {
-			int random = gerarAleatorio();
+			random = gerarAleatorio();
 			
 			n1 = random%11;
+			n2=1;
 			
 			while(random<min || random>max) {
 				if (random>max) {
