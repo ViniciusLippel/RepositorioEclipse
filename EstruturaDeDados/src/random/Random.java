@@ -16,11 +16,7 @@ public class Random {
 	}
 	
 	public int gerarAleatorioIntervalo(int min, int max) {
-		int random=0;
-		
-		random = gerarAleatorio()%(max-min);
-		
-		return random;
+		return min + (gerarAleatorio()%(max-min));
 	}
 	
 	public String caraCoroa(int n) throws InterruptedException {
@@ -53,7 +49,8 @@ public class Random {
 	public int lancarDado(int l) {
 		int random=0;
 		if (l==4 || l==6 || l==8 || l==10 || l==12 || l==20 || l==60 || l==100) {
-			random = gerarAleatorio()%l;
+			while (random==0)
+				random = gerarAleatorio()%l;
 		}
 		return random;
 	}
