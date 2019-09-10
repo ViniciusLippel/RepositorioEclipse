@@ -1,14 +1,13 @@
-package agregacaoComposicao;
+package l8_ex1;
+
+import l8_ex1.SistemaDeSom;
+import l8_ex1.SistemaDeVideo;
 
 public class HomeTheater {
 	
 	protected SistemaDeSom som;
 	protected SistemaDeVideo video;
 	
-	public HomeTheater(SistemaDeSom som, SistemaDeVideo video) {
-		this.som = new SistemaDeSom();
-		this.video = new SistemaDeVideo();
-	}
 	public SistemaDeSom getSom() {
 		return som;
 	}

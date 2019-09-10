@@ -1,4 +1,6 @@
-package agregacaoComposicao;
+package l8_ex1;
+
+import l8_ex1.EquipamentoEletronico;
 
 public class SistemaDeVideo extends EquipamentoEletronico {
 	

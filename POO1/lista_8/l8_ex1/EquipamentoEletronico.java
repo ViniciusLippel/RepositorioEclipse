@@ -1,4 +1,4 @@
-package agregacaoComposicao;
+package l8_ex1;
 
 public class EquipamentoEletronico {
 	private float tensao;

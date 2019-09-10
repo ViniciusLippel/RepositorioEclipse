@@ -1,4 +1,6 @@
-package agregacaoComposicao;
+package l8_ex1;
+
+import l8_ex1.EquipamentoEletronico;
 
 public class SistemaDeSom extends EquipamentoEletronico {
 	
@@ -40,7 +42,9 @@ public class SistemaDeSom extends EquipamentoEletronico {
 		builder.append(", potencia=");
 		builder.append(potencia);
 		builder.append("]");
+		builder.append(", toString()=");
 		builder.append(super.toString());
+		builder.append("]");
 		return builder.toString();
 	}
 	
