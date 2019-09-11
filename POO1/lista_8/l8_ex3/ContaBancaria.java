@@ -8,6 +8,15 @@ public class ContaBancaria {
 	private double saldo;
 	private Pessoa correntista;
 	
+	public ContaBancaria(Banco banco, int agencia, int numeroDaConta, double saldo, Pessoa correntista) {
+		super();
+		this.setBanco(banco);
+		this.setAgencia(agencia);
+		this.setNumeroDaConta(numeroDaConta);
+		this.setSaldo(saldo);
+		this.setCorrentista(correntista);
+	}
+	
 	public Banco getBanco() {
 		return banco;
 	}
@@ -28,13 +37,16 @@ public class ContaBancaria {
 		this.banco = banco;
 	}
 	public void setAgencia(int agencia) {
-		this.agencia = agencia;
+		if (agencia>0 && agencia<=this.banco.getNumeroAgencias())
+			this.agencia = agencia;
 	}
 	public void setNumeroDaConta(int numeroDaConta) {
-		this.numeroDaConta = numeroDaConta;
+		if (numeroDaConta>0)
+			this.numeroDaConta = numeroDaConta;
 	}
 	public void setSaldo(double saldo) {
-		this.saldo = saldo;
+		if(saldo>=0)
+			this.saldo = saldo;
 	}
 	public void setCorrentista(Pessoa correntista) {
 		this.correntista = correntista;

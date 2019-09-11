@@ -7,9 +7,9 @@ public class Banco {
 	private int numeroAgencias;
 	
 	public Banco(int codigo, String nome, int numeroAgencias) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.numeroAgencias = numeroAgencias;
+		this.setCodigo(codigo);
+		this.setNome(nome);
+		this.setNumeroAgencias(numeroAgencias);
 	}
 	
 	public int getCodigo() {
