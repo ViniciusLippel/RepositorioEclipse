@@ -53,8 +53,12 @@ public class ContaBancaria {
 	}
 	
 	public boolean deposito(double valor) {
-		this.saldo = this.saldo+valor;
-		return true;
+		if(valor>0) {
+			this.saldo = this.saldo+valor;
+			return true;
+		}
+		else
+			return false;
 	}
 	public boolean saque(double valor) {
 		boolean valida = false;
