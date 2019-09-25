@@ -4,6 +4,11 @@ public class Usuario {
 
 	private String email;
 
+	public Usuario(String email) {
+		super();
+		this.setEmail(email);
+	}
+
 	public String getEmail() {
 		return email;
 	}

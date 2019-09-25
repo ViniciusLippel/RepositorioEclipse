@@ -4,6 +4,11 @@ public class Candidato {
 
 	private Usuario usuario;
 
+	public Candidato(Usuario usuario) {
+		super();
+		this.setUsuario(usuario);
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
