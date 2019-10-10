@@ -5,7 +5,12 @@
 	<classpathentry kind="src" path="lista_7"/>
 	<classpathentry kind="src" path="lista_8"/>
 	<classpathentry kind="src" path="diagramas"/>
+<<<<<<< Updated upstream
 	<classpathentry kind="src" path="json"/>
+=======
+	<classpathentry kind="src" path="polimorfismo"/>
+	<classpathentry kind="src" path="enum"/>
+>>>>>>> Stashed changes
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson_lib"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson"/>
 	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
