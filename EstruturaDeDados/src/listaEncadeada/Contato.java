@@ -5,6 +5,7 @@ public class Contato {
 	private String nome;
 	private long fone;
 	private String email;
+	private Contato proximo;
 	
 	public String getNome() {
 		return nome;
@@ -25,6 +26,13 @@ public class Contato {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Contato getProximo() {
+		return proximo;
+	}
+	public void setProximo(Contato proximo) {
+		this.proximo = proximo;
 	}
 	
 	@Override
