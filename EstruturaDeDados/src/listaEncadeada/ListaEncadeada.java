@@ -4,10 +4,26 @@ import java.util.Scanner;
 
 public class ListaEncadeada {
 	
-	public Contato inicioLista = null;
-	public Contato fimLista = null;
+	private Contato inicioLista = null;
+	private Contato fimLista = null;
 	
-	public void menu() {
+	public Contato getInicioLista() {
+		return inicioLista;
+	}
+
+	public void setInicioLista(Contato inicioLista) {
+		this.inicioLista = inicioLista;
+	}
+
+	public Contato getFimLista() {
+		return fimLista;
+	}
+
+	public void setFimLista(Contato fimLista) {
+		this.fimLista = fimLista;
+	}
+
+	public int menu() {
 		Scanner entrada = new Scanner(System.in);
 		int op;
 		do {
@@ -43,13 +59,15 @@ public class ListaEncadeada {
 				this.pesquisar(entrada.nextLine(),inicioLista);
 				break;
 			case 4:
-				//this.excluir();
+				System.out.println("Nome: ");
+				this.excluir(entrada.nextLine(),inicioLista);
 				break;
 			case 5:
 				//this.inserirMeio();
+				System.out.println(tamanho(0, inicioLista));
 				break;
 			case 6:
-				//this.ultimoRegistro();
+				System.out.println(this.ultimoRegistro(inicioLista));
 				break;
 			case 0:
 				System.out.println("Obrigado, volte sempre!");
@@ -60,6 +78,7 @@ public class ListaEncadeada {
 		} while (op != 0);
 		
 		entrada.close();
+		return op;
 	}
 	
 	public void inserir(String nome, long fone, String email) {
@@ -85,24 +104,42 @@ public class ListaEncadeada {
 	}
 	
 	public void pesquisar(String pesquisa, Contato aux) {
-		if(aux.getNome().compareTo(pesquisa)==0)
+		if(aux.getNome().compareTo(pesquisa)<=aux.getNome().length())
 			System.out.println(aux.toString());
-		else
+		if (aux.getProximo()!=null)
 			pesquisar(pesquisa, aux.getProximo());
 	}
 	
 	public void excluir(String nome, Contato aux) {
-		if(aux.getNome().compareTo(nome)==0)
-			System.out.println(aux.toString());
+		if(aux.getProximo().getNome().compareTo(nome)==0) {
+			if (aux.getProximo()==fimLista)
+				fimLista = aux;
+			aux.setProximo(aux.getProximo().getProximo());
+		}
+		else if (aux.getNome().compareTo(nome)==0)
+			inicioLista = aux.getProximo();
 		else
 			excluir(nome, aux.getProximo());
+	}
+	
+	public int tamanho(int i, Contato aux) {
+		i = 1;
+		if (aux.getProximo()!=null) {
+			i = i+tamanho(i, aux.getProximo());
+			return i;
+		}
+		else
+			return 1;
 	}
 	
 	public void inserirMeio() {
 		
 	}
 	
-	public void ultimoRegistro() {
-		
+	public Contato ultimoRegistro(Contato contato) {
+		if (contato.getProximo() != null)
+			return ultimoRegistro(contato.getProximo());
+		else
+			return contato;
 	}
 }
