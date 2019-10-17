@@ -9,6 +9,7 @@
 	<classpathentry kind="src" path="polimorfismo"/>
 	<classpathentry kind="src" path="json"/>
 	<classpathentry kind="src" path="Interfaces"/>
+	<classpathentry kind="src" path="persistenciaDeDados"/>
 	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
