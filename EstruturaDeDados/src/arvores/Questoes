@@ -1,0 +1,25 @@
+Questões arvores:
+
+1 - Qual é o nível desta árvore?
+	R: 5;
+
+2 – Qual é a ordem desta árvore?
+	R: 4;
+
+3 – Qual é o nível do nodo H?
+	R: 2;
+
+4 – Qual é a ordem do nodo D?
+	R: 3;
+
+5 – Quais são os descendentes dos nodos:
+a) D?
+	R: i, k, m, t, 4 e &;
+b) 8?
+	R: nenhum pois 8 é folha;
+	
+6 – Quais são os ancestrais dos nodos:
+a) 9?
+	R: z, p, f, b e a;
+b) W?
+	R: s, h, c, a;
