@@ -1,4 +1,4 @@
-package fila;
+ package fila;
 
 public class MainPares {
 
@@ -22,8 +22,8 @@ public class MainPares {
 				f_impares.add(f.getElemento(i).getNum());
 		}
 		
-		System.out.println(f_impares.get(1));
-		System.out.println(f_pares.get(0));
+		System.out.println(f_impares.toString());
+		System.out.println(f_pares.toString());
 	}
 
 }

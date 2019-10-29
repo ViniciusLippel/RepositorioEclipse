@@ -33,6 +33,7 @@ public class Fila {
 	}
 	
 	public void remover(Num num) {
+		inicioFila.getProximo().setIndice(inicioFila.getIndice());
 		inicioFila = inicioFila.getProximo();
 	}
 	
@@ -47,7 +48,7 @@ public class Fila {
 		return tamanho(inicioFila);
 	}
 	
-	private Num get (int i, Num num) {
+	private Num get(int i, Num num) {
 		if (num.getIndice() == i)
 			return num;
 		return get(i, num.getProximo());
@@ -60,4 +61,27 @@ public class Fila {
 	public Num getElemento(int i) {
 		return get(i, inicioFila);
 	}
+	
+	public String toString(Num num) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(num.getNum());
+		if(num.getProximo()!=null) { 
+			builder.append(", ");
+			builder.append(toString(num.getProximo()));
+		}
+		return builder.toString();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Fila [");
+		builder.append(toString(inicioFila));
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+	
+	
 }
