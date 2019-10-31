@@ -32,7 +32,7 @@ public class Main {
 		CSV csv = new CSV();
 		XML xml = new XML();
 		Json json = new Json();
-		Persistencia per = new Persistencia (json);
+		Persistencia per = new Persistencia (csv);
 		per.gravar(lista);
 		List<Pessoa> lista1 = per.ler();
 		
