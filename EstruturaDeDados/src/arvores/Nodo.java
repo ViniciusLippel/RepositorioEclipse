@@ -44,6 +44,21 @@ public class Nodo {
 	public void setPai(Nodo pai) {
 		this.pai = pai;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Nodo [numero=");
+		builder.append(numero);
+		builder.append(", direita=");
+		builder.append(direita);
+		builder.append(", esquerda=");
+		builder.append(esquerda);
+		builder.append(", pai=");
+		builder.append(pai);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 	
 }
