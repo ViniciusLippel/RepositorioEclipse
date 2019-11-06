@@ -1,6 +1,7 @@
 package pa_pg;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -41,15 +42,24 @@ public class Main {
 			else if(menu==2) {
 				prog = new Progressao();
 				System.out.print("Nome do arquivo: ");
-				prog.construir(prog.ler(entrada.nextLine()));
-				System.out.println("Progressão: "+prog.strProgressao());
-				System.out.println("A1: "+prog.getA1());
-				System.out.println("Razão: "+prog.getRazao());
-				System.out.println("Quantidade: "+prog.getQuantidade());
-				System.out.println("Tipo: "+prog.getTipo());
-				System.out.println("Somatória: "+prog.somatoria());
-				System.out.println("Média: "+prog.media());
-				System.out.println("Mediana: "+prog.mediana());
+				String nome = entrada.nextLine();
+				if(prog.construir(prog.ler(nome))) {
+					System.out.println("Progressão: "+prog.strProgressao());
+					System.out.println("A1: "+prog.getA1());
+					System.out.println("Razão: "+prog.getRazao());
+					System.out.println("Quantidade: "+prog.getQuantidade());
+					System.out.println("Tipo: "+prog.getTipo());
+					System.out.println("Somatória: "+prog.somatoria());
+					System.out.println("Média: "+prog.media());
+					System.out.println("Mediana: "+prog.mediana());
+					System.out.println("Gráfico criado como "+nome+".html");
+					GraficoLinha gl = new GraficoLinha();
+					gl.montarGrafico(prog.ler(nome), nome);
+				}
+				else {
+					System.out.println("\nProgressão alterada!");
+					System.out.println("Esta progressão está "+(Math.round((1-prog.porcentagemAlteracao(prog.ler(nome)))*100))+"% errada");
+				}
 			}
 		}
 		

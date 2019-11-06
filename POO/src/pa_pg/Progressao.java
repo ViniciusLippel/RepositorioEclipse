@@ -2,6 +2,8 @@ package pa_pg;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Progressao {
@@ -67,25 +69,11 @@ public class Progressao {
 	
 	
 	public boolean verificar(int[] vet) {
-		if(verificarTipo(vet)==TipoProgressao.PA) {
-			int razao = vet[1]-vet[0];
-			for(int i=1; i<vet.length-1; i++) {
-				if(vet[i+1]-vet[i]!=razao)
-					return false;
-			}
+		int razaoPA = vet[1]-vet[0], razaoPG = vet[1]/vet[0];
+		for(int i=1; i<vet.length-1; i++) {
+			if(vet[i+1]-vet[i]!=razaoPA && vet[i+1]/vet[i]!=razaoPG)
+				return false;
 		}
-		
-		else if(verificarTipo(vet)==TipoProgressao.PG) {
-			int razao = vet[1]/vet[0];
-			for(int i=1; i<vet.length-1; i++) {
-				if(vet[i+1]/vet[i]!=razao)
-					return false;
-			}
-		}
-		
-		else
-			return false;
-		
 		return true;
 	}
 	
@@ -102,23 +90,22 @@ public class Progressao {
 			else if(vet[1]/vet[0] == vet[0]*(vet[1]/vet[0]))
 				return TipoProgressao.PG;
 		}
-		
 		return null;
 	}
 	
-	public void construir(int[] vet) {
+	public boolean construir(int[] vet) {
 		if(verificar(vet)) {
-			a1 = vet[0];
 			quantidade = vet.length;
+			a1 = vet[0];
 			tipo = verificarTipo(vet);
 			if(tipo==TipoProgressao.PA)
 				razao = vet[1]-vet[0];
 			else
 				razao = vet[1]/vet[0];
+			
+			return true;
 		}
-		else {
-			porcentagemAlteracao(vet);
-		}
+		return false;
 	}
 	
 	public int somatoria() {
@@ -153,8 +140,29 @@ public class Progressao {
 		return builder.toString();
 	}
 	
-	public int porcentagemAlteracao(int[] vet) {
-		
-		return 0;
+	public double porcentagemAlteracao(int[] vet) {
+		ArrayList<Integer> razaoPA = new ArrayList<Integer>();
+		ArrayList<Integer> razaoPG = new ArrayList<Integer>();
+		razaoPA.add(vet[1]-vet[0]);
+		razaoPG.add(vet[1]/vet[0]);
+		for(int i=1; i<vet.length-1; i++) {
+			razaoPA.add(vet[i+1]-vet[i]);
+			razaoPG.add(vet[i+1]/vet[i]);
+		}
+		int frequencia=0, maisFrequente=0;
+		for(int i=0; i<razaoPG.size(); i++) {
+			if(Collections.frequency(razaoPG, razaoPG.get(i))>frequencia) {
+				frequencia = Collections.frequency(razaoPG, razaoPG.get(i));
+				maisFrequente = razaoPG.get(i);
+			}
+		}
+		for(int i=0; i<razaoPA.size(); i++) {
+			if(Collections.frequency(razaoPA, razaoPA.get(i))>frequencia) {
+				frequencia = Collections.frequency(razaoPA, razaoPA.get(i));
+				maisFrequente = razaoPA.get(i);
+			}
+		}
+//		System.out.println("mais frequente: "+ maisFrequente+" frequencia: "+frequencia);
+		return (double) (frequencia+1)/vet.length;
 	}
 }
