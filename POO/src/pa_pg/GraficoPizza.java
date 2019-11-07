@@ -3,7 +3,7 @@ package pa_pg;
 import java.io.File;
 import java.io.FileWriter;
 
-public class GraficoLinha {
+public class GraficoPizza {
 
 	public void montarGrafico(int[] vet, String nome) {
 		String texto="";
