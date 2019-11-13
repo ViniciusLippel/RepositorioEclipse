@@ -1,10 +1,10 @@
 package fila;
 
-public class Num {
+public class Processo {
 	
 	private int indice;
 	private int num;
-	private Num proximo;
+	private Processo proximo;
 	
 	public int getIndice() {
 		return indice;
@@ -20,10 +20,10 @@ public class Num {
 		this.num = num;
 	}
 	
-	public Num getProximo() {
+	public Processo getProximo() {
 		return proximo;
 	}
-	public void setProximo(Num proximo) {
+	public void setProximo(Processo proximo) {
 		this.proximo = proximo;
 	}
 	

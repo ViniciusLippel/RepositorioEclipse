@@ -1,4 +1,4 @@
-package fila;
+package trabalhoFinal;
 
 public class Fila {
 
@@ -12,18 +12,16 @@ public class Fila {
 			return false;
 	}
 	
-	public void add(int n) {
-		Processo num = new Processo();
-		num.setNum(n);
+	public void add(Processo p) {
 		if (vazia()) {
-			num.setIndice(0);
-			inicioFila = num;
+			p.setIndice(0);
+			inicioFila = p;
 		}
 		else {
-			num.setIndice(tamanho());
-			fimFila.setProximo(num);
+			p.setIndice(tamanho());
+			fimFila.setProximo(p);
 		}
-		fimFila = num;
+		fimFila = p;
 	}
 	
 	public Processo pegarProximo() {
@@ -37,10 +35,12 @@ public class Fila {
 		inicioFila = inicioFila.getProximo();
 	}
 	
-	public int tamanho(Processo num) {
+	public int tamanho(Processo p) {
 		int t = 1;
-		if (num.getProximo() != null)
-			return t + tamanho(num.getProximo());
+		if (p.getProximo() != null) {
+			return t + tamanho(p.getProximo());
+		}
+//		System.out.println(p);
 		return t;
 	}
 	
@@ -48,26 +48,26 @@ public class Fila {
 		return tamanho(inicioFila);
 	}
 	
-	private Processo get(int i, Processo num) {
-		if (num.getIndice() == i)
-			return num;
-		return get(i, num.getProximo());
+	private Processo get(int i, Processo p) {
+		if (p.getIndice() == i)
+			return p;
+		return get(i, p.getProximo());
 	}
 	
-	public int get(int i) {
-		return get(i, inicioFila).getNum();
+	public String get(int i) {
+		return get(i, inicioFila).toString();
 	}
 	
 	public Processo getElemento(int i) {
 		return get(i, inicioFila);
 	}
 	
-	public String toString(Processo num) {
+	public String toString(Processo p) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(num.getNum());
-		if(num.getProximo()!=null) { 
+		builder.append(p.toString());
+		if(p.getProximo()!=null) { 
 			builder.append(", ");
-			builder.append(toString(num.getProximo()));
+			builder.append(toString(p.getProximo()));
 		}
 		return builder.toString();
 	}

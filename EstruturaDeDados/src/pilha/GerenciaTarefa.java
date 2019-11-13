@@ -2,7 +2,7 @@ package pilha;
 
 public class GerenciaTarefa {
 	
-	private Tarefa topoPilha;
+	private Processo topoPilha;
 	
 	public boolean vazia() {
 		if (topoPilha == null)
@@ -11,7 +11,7 @@ public class GerenciaTarefa {
 			return false;
 	}
 	
-	public void inserir(Tarefa nova) {
+	public void inserir(Processo nova) {
 		if(vazia())
 			topoPilha = nova;
 		else
@@ -19,8 +19,8 @@ public class GerenciaTarefa {
 		topoPilha = nova;
 	}
 	
-	public Tarefa remover() {
-		Tarefa rem = topoPilha;
+	public Processo remover() {
+		Processo rem = topoPilha;
 		topoPilha = topoPilha.getProximo();
 		return rem;
 	}

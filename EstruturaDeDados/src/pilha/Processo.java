@@ -1,9 +1,9 @@
 package pilha;
 
-public class Tarefa {
+public class Processo {
 	public int indice;
 	public String descricao;
-	public Tarefa proximo;
+	public Processo proximo;
 	
 	public int getIndice() {
 		return indice;
@@ -19,10 +19,10 @@ public class Tarefa {
 		this.descricao = descricao;
 	}
 	
-	public Tarefa getProximo() {
+	public Processo getProximo() {
 		return proximo;
 	}
-	public void setProximo(Tarefa proximo) {
+	public void setProximo(Processo proximo) {
 		this.proximo = proximo;
 	}
 	

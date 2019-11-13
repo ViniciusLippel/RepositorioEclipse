@@ -1,4 +1,4 @@
-package pilha;
+package trabalhoFinal;
 
 public class Pilha {
 
@@ -11,18 +11,16 @@ public class Pilha {
 			return false;
 	}
 	
-	public void add(String desc) {
-		Processo nova = new Processo();
-		nova.setDescricao(desc);
+	public void add(Processo p) {
 		if(vazia()) {
-			nova.setIndice(0);
-			topoPilha = nova;
+			p.setIndice(0);
+			topoPilha = p;
 		}
 		else {
-			nova.setIndice(tamanho());
-			nova.setProximo(topoPilha);
+			p.setIndice(tamanho());
+			p.setProximo(topoPilha);
 		}
-		topoPilha = nova;
+		topoPilha = p;
 	}
 	
 	public Processo proxima() {
@@ -36,10 +34,10 @@ public class Pilha {
 		topoPilha = topoPilha.getProximo();
 	}
 	
-	public int tamanho(Processo tarefa) {
+	public int tamanho(Processo p) {
 		int t = 1;
-		if (tarefa.getProximo() != null)
-			return t + tamanho(tarefa.getProximo());
+		if (p.getProximo() != null)
+			return t + tamanho(p.getProximo());
 		return t;
 	}
 	
@@ -47,10 +45,10 @@ public class Pilha {
 		return tamanho(topoPilha);
 	}
 	
-	private Processo get(int i, Processo tarefa) {
-		if (tarefa.getIndice() == i)
-			return tarefa;
-		return get(i, tarefa.getProximo());
+	private Processo get(int i, Processo p) {
+		if (p.getIndice() == i)
+			return p;
+		return get(i, p.getProximo());
 	}
 	
 	public String get(int i) {
@@ -61,12 +59,12 @@ public class Pilha {
 		return get(i, topoPilha);
 	}
 	
-	public String toString(Processo num) {
+	public String toString(Processo p) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(num.getDescricao());
-		if(num.getProximo()!=null) { 
+		builder.append(p.getDescricao());
+		if(p.getProximo()!=null) { 
 			builder.append(", ");
-			builder.append(toString(num.getProximo()));
+			builder.append(toString(p.getProximo()));
 		}
 		return builder.toString();
 	}
