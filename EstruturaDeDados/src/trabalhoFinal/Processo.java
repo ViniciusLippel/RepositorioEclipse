@@ -47,4 +47,13 @@ public class Processo {
 		return builder.toString();
 	}
 	
+	public String toStringSimple() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Processo [descricao=");
+		builder.append(descricao);
+		builder.append(", finalidade=");
+		builder.append(finalidade);
+		builder.append("]");
+		return builder.toString();
+	}
 }

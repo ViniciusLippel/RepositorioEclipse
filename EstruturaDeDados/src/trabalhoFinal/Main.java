@@ -21,48 +21,80 @@ public class Main {
 			entrada.nextLine();
 			
 			if(menu == 1) {
+//				Processo p = new Processo();
+//				System.out.print("Descrição: ");
+//				p.setDescricao(entrada.nextLine());
+//				System.out.println("Finalidade: \n1- A \n2- B \n3- C");
+//				int fin = 0;
+//				while(fin!=1 && fin!=2 && fin!=3) {
+//					fin = entrada.nextInt();
+//					entrada.nextLine();
+//				}
+//				if(fin==1)
+//					p.setFinalidade(Finalidade.A);
+//				else if(fin==2)
+//					p.setFinalidade(Finalidade.B);
+//				else if(fin==3)
+//					p.setFinalidade(Finalidade.C);
+//				
+//				filaProcessos.add(p);
+//				
+//				System.out.println(filaProcessos.getFimFila());
 				Processo p = new Processo();
-				System.out.print("Descrição: ");
-				p.setDescricao(entrada.nextLine());
-				System.out.println("Finalidade: \n1- A \n2- B \n3- C");
-				int fin = 0;
-				while(fin!=1 && fin!=2 && fin!=3) {
-					fin = entrada.nextInt();
-					entrada.nextLine();
-				}
-				if(fin==1)
-					p.setFinalidade(Finalidade.A);
-				else if(fin==2)
-					p.setFinalidade(Finalidade.B);
-				else if(fin==3)
-					p.setFinalidade(Finalidade.C);
-				
+				p.setDescricao("Primerito");
+				p.setFinalidade(Finalidade.A);
+				filaProcessos.add(p);
+				p = new Processo();
+				p.setDescricao("Segundito");
+				p.setFinalidade(Finalidade.B);
+				filaProcessos.add(p);
+				p = new Processo();
+				p.setDescricao("Tercerito");
+				p.setFinalidade(Finalidade.A);
 				filaProcessos.add(p);
 			}
 			
 			else if(menu == 2) {
-				for(int i=0; i<filaProcessos.tamanho(); i++) {
-					if(filaProcessos.getElemento(i).getFinalidade() == Finalidade.A)
-//						System.out.println("inserindo em A");
-						pilhaA.add(filaProcessos.getElemento(i));
-					else if(filaProcessos.getElemento(i).getFinalidade() == Finalidade.B)
-						pilhaB.add(filaProcessos.getElemento(i));
-//						System.out.println("inserindo em B");
-					else if(filaProcessos.getElemento(i).getFinalidade() == Finalidade.C)
-						pilhaC.add(filaProcessos.getElemento(i));
-//						System.out.println("inserindo em C");
-//					System.out.println("teste"+1);
+				int tamanho = filaProcessos.tamanho();
+				for(int i=0; i<tamanho; i++) {
+					Processo atual = filaProcessos.pegarProximo();
+					if(atual.getFinalidade() == Finalidade.A)
+						pilhaA.add(atual);
+					else if(atual.getFinalidade() == Finalidade.B)
+						pilhaB.add(atual);
+					else if(atual.getFinalidade() == Finalidade.C)
+						pilhaC.add(atual);
 				}
 				System.out.println("Triagem finalizada");
 			}
 			
 			else if(menu == 3) {
-				
+				int fin = 0;
+				while(fin!=1 && fin!=2 && fin!=3) {
+					System.out.println("1- Finalidade A \n2- Finalidade B \n3- Finalidade C");
+					fin = entrada.nextInt();
+					entrada.nextLine();
+				}
+				if(fin == 1) {
+					if(pilhaA.verificarProxima()!=null)
+						System.out.println(pilhaA.proxima().toStringSimple());
+					else
+						System.out.println("Sem processos");
+				}
+				else if(fin == 2) {
+					if(pilhaB.verificarProxima()!=null)
+						System.out.println(pilhaB.proxima().toStringSimple());
+					else
+						System.out.println("Sem processos");
+				}
+				else if(fin == 3) {
+					if(pilhaC.verificarProxima()!=null)
+						System.out.println(pilhaB.proxima().toStringSimple());
+					else
+						System.out.println("Sem processos");
+				}
 			}
 		}
-		
-		System.out.println(filaProcessos.toString());
-		
 		entrada.close();
 	}
 

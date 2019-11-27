@@ -10,6 +10,7 @@
 	<classpathentry kind="src" path="json"/>
 	<classpathentry kind="src" path="Interfaces"/>
 	<classpathentry kind="src" path="persistenciaDeDados"/>
+	<classpathentry kind="src" path="trabalhoFinal"/>
 	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

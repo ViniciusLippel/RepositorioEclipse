@@ -17,31 +17,45 @@ public class Fila {
 			p.setIndice(0);
 			inicioFila = p;
 		}
+		else if(fimFila==null) {
+			p.setIndice(1);
+			inicioFila.setProximo(p);
+			fimFila = p;
+		}
 		else {
 			p.setIndice(tamanho());
-			fimFila.setProximo(p);
+			ultimo(inicioFila).setProximo(p);
+			fimFila = p;
 		}
-		fimFila = p;
+	}
+	
+	public Processo ultimo(Processo p) {
+		if(p != fimFila)
+			return ultimo(p.getProximo());
+		return p;
 	}
 	
 	public Processo pegarProximo() {
 		Processo prox = inicioFila;
-		remover(inicioFila);
+		remover();
 		return prox;
 	}
 	
-	public void remover(Processo num) {
-		inicioFila.getProximo().setIndice(inicioFila.getIndice());
+
+	public void remover() {
+		if(inicioFila.getProximo()!=null)
+			inicioFila.getProximo().setIndice(inicioFila.getIndice());
 		inicioFila = inicioFila.getProximo();
 	}
 	
 	public int tamanho(Processo p) {
 		int t = 1;
-		if (p.getProximo() != null) {
+//		System.out.println(p);
+		if (p != fimFila) {
 			return t + tamanho(p.getProximo());
 		}
-//		System.out.println(p);
-		return t;
+		else
+			return t;
 	}
 	
 	public int tamanho() {
@@ -51,7 +65,10 @@ public class Fila {
 	private Processo get(int i, Processo p) {
 		if (p.getIndice() == i)
 			return p;
-		return get(i, p.getProximo());
+		if(p.getProximo()!=null)
+			return get(i, p.getProximo());
+		else
+			return null;
 	}
 	
 	public String get(int i) {
@@ -62,25 +79,25 @@ public class Fila {
 		return get(i, inicioFila);
 	}
 	
-	public String toString(Processo p) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(p.toString());
-		if(p.getProximo()!=null) { 
-			builder.append(", ");
-			builder.append(toString(p.getProximo()));
-		}
-		return builder.toString();
-	}
-	
-	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Fila [");
-		builder.append(toString(inicioFila));
-		builder.append("]");
-		return builder.toString();
+		return inicioFila.toString();
 	}
-	
+
+	public Processo getInicioFila() {
+		return inicioFila;
+	}
+
+	public void setInicioFila(Processo inicioFila) {
+		this.inicioFila = inicioFila;
+	}
+
+	public Processo getFimFila() {
+		return fimFila;
+	}
+
+	public void setFimFila(Processo fimFila) {
+		this.fimFila = fimFila;
+	}
 	
 	
 	

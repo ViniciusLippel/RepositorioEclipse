@@ -11,16 +11,23 @@ public class Pilha {
 			return false;
 	}
 	
-	public void add(Processo p) {
+	public void add(Processo q) {
+		Processo p = q;
+//		p.setProximo(null);
 		if(vazia()) {
 			p.setIndice(0);
 			topoPilha = p;
+			p.setProximo(null);
 		}
 		else {
 			p.setIndice(tamanho());
 			p.setProximo(topoPilha);
+			topoPilha = p;
 		}
-		topoPilha = p;
+	}
+	
+	public Processo verificarProxima() {
+		return topoPilha;
 	}
 	
 	public Processo proxima() {
@@ -35,10 +42,10 @@ public class Pilha {
 	}
 	
 	public int tamanho(Processo p) {
-		int t = 1;
 		if (p.getProximo() != null)
-			return t + tamanho(p.getProximo());
-		return t;
+			return 1 + tamanho(p.getProximo());
+		else
+			return 1;
 	}
 	
 	public int tamanho() {
@@ -61,20 +68,36 @@ public class Pilha {
 	
 	public String toString(Processo p) {
 		StringBuilder builder = new StringBuilder();
-		builder.append(p.getDescricao());
-		if(p.getProximo()!=null) { 
-			builder.append(", ");
-			builder.append(toString(p.getProximo()));
-		}
-		return builder.toString();
+		int tamanho = tamanho();
+		Processo aux = p;
+//		for(int i=0; i<3; i++) {
+//			builder.append(aux.getProximo());
+//			aux = aux.getProximo();
+//		}
+		return topoPilha.toString();
+	}
+
+	public Processo getTopoPilha() {
+		return topoPilha;
+	}
+
+	public void setTopoPilha(Processo topoPilha) {
+		this.topoPilha = topoPilha;
 	}
 	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Fila [");
-		builder.append(toString(topoPilha));
-		builder.append("]");
-		return builder.toString();
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Pilha [");
+//		builder.append(toString(topoPilha));
+//		builder.append("]");
+//		return builder.toString();
+		return topoPilha.toString();
 	}
+	
+	public String testeRetorno() {
+		return topoPilha.getDescricao();
+	}
+	
+	
 }
