@@ -11,11 +11,13 @@ public class Main {
 		Pilha pilhaA = new Pilha(), pilhaB = new Pilha(), pilhaC = new Pilha();
 		int menu = 1;
 		
+		
+		
 		while(menu!=0) {
 			System.out.println("\nMENU");
 			System.out.println("1- Chegada de processo");
 			System.out.println("2- Triagem de processos");
-			System.out.println("3- Pegar processo");
+			System.out.println("3- Analisar processo");
 			System.out.println("0- Sair");
 			menu = entrada.nextInt();
 			entrada.nextLine();
@@ -77,25 +79,30 @@ public class Main {
 				}
 				if(fin == 1) {
 					if(pilhaA.verificarProxima()!=null)
-						System.out.println(pilhaA.proxima().toStringSimple());
+						System.out.println("Processo a ser analisado: "+pilhaA.verificarProxima().toStringSimple());
 					else
 						System.out.println("Sem processos");
 				}
 				else if(fin == 2) {
 					if(pilhaB.verificarProxima()!=null)
-						System.out.println(pilhaB.proxima().toStringSimple());
+						System.out.println("Processo a ser analisado: "+pilhaB.verificarProxima().toStringSimple());
 					else
 						System.out.println("Sem processos");
 				}
 				else if(fin == 3) {
 					if(pilhaC.verificarProxima()!=null)
-						System.out.println(pilhaB.proxima().toStringSimple());
+						System.out.println("Processo a ser analisado: "+pilhaC.verificarProxima().toStringSimple());
 					else
 						System.out.println("Sem processos");
 				}
 			}
 		}
 		entrada.close();
+	}
+	
+	public int escolherMesa() {
+		System.out.println("Mesa");
+		return 0;
 	}
 
 }

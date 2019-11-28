@@ -1,27 +1,31 @@
 package trabalhoFinal;
 
 public class Mesa {
-	private int numero;
+	private boolean emUso;
 	private Mesa proxima;
 	
-	public int getNumero() {
-		return numero;
+	public Mesa() {
+		emUso = false;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+	
 	public Mesa getProxima() {
 		return proxima;
 	}
 	public void setProxima(Mesa proxima) {
 		this.proxima = proxima;
 	}
+	public boolean isEmUso() {
+		return emUso;
+	}
+	public void setEmUso(boolean emUso) {
+		this.emUso = emUso;
+	}
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Mesa [numero=");
-		builder.append(numero);
+		builder.append("Mesa [emUso=");
+		builder.append(emUso);
 		builder.append(", proxima=");
 		builder.append(proxima);
 		builder.append("]");
