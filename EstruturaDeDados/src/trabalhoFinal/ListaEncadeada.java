@@ -1,131 +1,97 @@
 package trabalhoFinal;
 
-import java.util.Scanner;
-
 public class ListaEncadeada {
 	
-	private Contato inicioLista = null;
-	private Contato fimLista = null;
+	private Mesa inicioLista = null;
+	private Mesa fimLista = null;
 	
-	public Contato getInicioLista() {
+	public Mesa getInicioLista() {
 		return inicioLista;
 	}
 
-	public void setInicioLista(Contato inicioLista) {
+	public void setInicioLista(Mesa inicioLista) {
 		this.inicioLista = inicioLista;
 	}
 
-	public Contato getFimLista() {
+	public Mesa getFimLista() {
 		return fimLista;
 	}
 
-	public void setFimLista(Contato fimLista) {
+	public void setFimLista(Mesa fimLista) {
 		this.fimLista = fimLista;
 	}
-
-	public int menu() {
-		Scanner entrada = new Scanner(System.in);
-		int op;
-		do {
-			System.out.println("\nMenu");
-			System.out.println("1- Inserir Contato");
-			System.out.println("2- Listar Contatos");
-			System.out.println("3- Pesquisar Contato");
-			System.out.println("4- Excluir Contato");
-			System.out.println("5- Inserir no meio da lista");
-			System.out.println("6- Mostrar último registro");
-			System.out.println("0- Sair");
-			op = Integer.parseInt(entrada.nextLine());
-			
-			String nome, email;
-			long fone;
-			
-			switch(op) {
-			case 1:
-				System.out.print("Nome: ");
-				nome = entrada.nextLine();
-				System.out.print("Telefone: ");
-				fone = entrada.nextLong();
-				entrada.nextLine();
-				System.out.print("E-mail: ");
-				email = entrada.nextLine();
-				this.inserir(nome, fone, email);
-				break;
-			case 2:
-				this.listar(inicioLista);
-				break;
-			case 3:
-				System.out.print("Nome: ");
-				this.pesquisar(entrada.nextLine(),inicioLista);
-				break;
-			case 4:
-				System.out.println("Nome: ");
-				this.excluir(entrada.nextLine(),inicioLista);
-				break;
-			case 5:
-				//this.inserirMeio();
-				System.out.println(tamanho(0, inicioLista));
-				break;
-			case 6:
-				System.out.println(this.ultimoRegistro(inicioLista));
-				break;
-			case 0:
-				System.out.println("Obrigado, volte sempre!");
-				break;
-			default:
-				System.out.println("Opção inválida, tente novamente");
-			}
-		} while (op != 0);
-		
-		entrada.close();
-		return op;
+	
+	public boolean vazia() {
+		if (inicioLista == null)
+			return true;
+		else
+			return false;
 	}
 	
-	public void inserir(String nome, long fone, String email) {
-		Contato novo = new Contato();
-		novo.setNome(nome);
-		novo.setFone(fone);
-		novo.setEmail(email);
-		if(inicioLista == null) {
-			inicioLista = novo;
+	public void add(Mesa m) {
+		if (vazia()) 
+			inicioLista = m;
+		else if(fimLista==null) {
+			inicioLista.setProxima(m);
+			fimLista = m;
 		}
 		else {
-			fimLista.setProximo(novo);
-		}
-		fimLista = novo;
-	}
-	
-	public void listar(Contato contato) {
-		System.out.println(contato.toString());
-		if(contato != fimLista) {
-			contato = contato.getProximo();
-			listar(contato);
+			ultimo(inicioLista).setProxima(m);
+			fimLista = m;
 		}
 	}
 	
-	public void pesquisar(String pesquisa, Contato aux) {
-		if(aux.getNome().compareTo(pesquisa)<=aux.getNome().length())
-			System.out.println(aux.toString());
-		if (aux.getProximo()!=null)
-			pesquisar(pesquisa, aux.getProximo());
-	}
-	
-	public void excluir(String nome, Contato aux) {
-		if(aux.getProximo().getNome().compareTo(nome)==0) {
-			if (aux.getProximo()==fimLista)
-				fimLista = aux;
-			aux.setProximo(aux.getProximo().getProximo());
-		}
-		else if (aux.getNome().compareTo(nome)==0)
-			inicioLista = aux.getProximo();
+	private Mesa get(int i, Mesa aux) {
+		if (tamanho(aux)-1 == i)
+			return aux;
+		if(aux.getProxima()!=null)
+			return get(i, aux.getProxima());
 		else
-			excluir(nome, aux.getProximo());
+			return null;
 	}
 	
-	public int tamanho(int i, Contato aux) {
-		i = 1;
-		if (aux.getProximo()!=null) {
-			i = i+tamanho(i, aux.getProximo());
+	public Mesa get(int i) {
+		return get(i, inicioLista);
+	}
+	
+	public Mesa ultimo(Mesa m) {
+		if(m != fimLista)
+			return ultimo(m.getProxima());
+		return m;
+	}
+	
+	
+	
+	public void excluir(int i) {
+		Mesa aux = inicioLista;
+		boolean stop = false;
+		if(i!=0) {
+			while(aux.getProxima()!=null && !stop) {
+				if(getIndice(aux.getProxima()) == i) 
+					aux.setProxima(aux.getProxima().getProxima());
+			}
+		}
+		else
+			inicioLista = inicioLista.getProxima();
+	}
+	
+	@SuppressWarnings("null")
+	public int getIndice(Mesa m) {
+		for(int i=0; i<tamanho(inicioLista); i++) {
+			if(m == this.get(i,inicioLista))
+				return i;
+		}
+		return (Integer) null;
+	}
+	
+	public int tamanho() {
+		return tamanho(inicioLista);
+	}
+	
+	public int tamanho(Mesa aux) {
+		int i = 1;
+		if (aux.getProxima()!=null) {
+			i = i+tamanho(aux.getProxima());
 			return i;
 		}
 		else
@@ -136,9 +102,9 @@ public class ListaEncadeada {
 		
 	}
 	
-	public Contato ultimoRegistro(Contato contato) {
-		if (contato.getProximo() != null)
-			return ultimoRegistro(contato.getProximo());
+	public Mesa ultimoRegistro(Mesa contato) {
+		if (contato.getProxima() != null)
+			return ultimoRegistro(contato.getProxima());
 		else
 			return contato;
 	}

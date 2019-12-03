@@ -3,15 +3,19 @@ package trabalhoFinal;
 import java.util.Scanner;
 
 public class Main {
-
+	
+	static Scanner entrada = new Scanner(System.in);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner entrada = new Scanner(System.in);
 		Fila filaProcessos = new Fila();
 		Pilha pilhaA = new Pilha(), pilhaB = new Pilha(), pilhaC = new Pilha();
 		int menu = 1;
+		ListaEncadeada mesas = new ListaEncadeada();
 		
-		
+		for(int i=0; i<10; i++) {
+			mesas.add(new Mesa());
+		}
+		mesas.get(1).setEmUso(true);
 		
 		while(menu!=0) {
 			System.out.println("\nMENU");
@@ -78,31 +82,46 @@ public class Main {
 					entrada.nextLine();
 				}
 				if(fin == 1) {
-					if(pilhaA.verificarProxima()!=null)
+					if(pilhaA.verificarProxima()!=null) {
 						System.out.println("Processo a ser analisado: "+pilhaA.verificarProxima().toStringSimple());
-					else
+						mesas.get(escolherMesa(mesas)-1).setEmUso(true);
+					}
+					else {
 						System.out.println("Sem processos");
+					}
 				}
 				else if(fin == 2) {
-					if(pilhaB.verificarProxima()!=null)
+					if(pilhaB.verificarProxima()!=null) {
 						System.out.println("Processo a ser analisado: "+pilhaB.verificarProxima().toStringSimple());
+						mesas.get(escolherMesa(mesas)-1).setEmUso(true);
+					}
 					else
 						System.out.println("Sem processos");
 				}
 				else if(fin == 3) {
-					if(pilhaC.verificarProxima()!=null)
+					if(pilhaC.verificarProxima()!=null) {
 						System.out.println("Processo a ser analisado: "+pilhaC.verificarProxima().toStringSimple());
+						mesas.get(escolherMesa(mesas)-1).setEmUso(true);
+					}
 					else
 						System.out.println("Sem processos");
 				}
 			}
 		}
-		entrada.close();
+//		entrada.close();
 	}
 	
-	public int escolherMesa() {
-		System.out.println("Mesa");
-		return 0;
+	public static int escolherMesa(ListaEncadeada mesas) {
+//		Scanner entrada1 = new Scanner(System.in);
+		System.out.println("Escolha uma das mesas disponíveis:");
+		for(int i=0; i<mesas.tamanho(); i++) {
+			if(!mesas.get(i).isEmUso()) {
+				System.out.println("Mesa "+(i+1));
+			}
+		}
+		int x = entrada.nextInt();
+//		entrada.close();
+		return x;
 	}
 
 }
