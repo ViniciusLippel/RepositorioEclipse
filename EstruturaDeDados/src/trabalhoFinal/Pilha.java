@@ -49,7 +49,9 @@ public class Pilha {
 	}
 	
 	public int tamanho() {
-		return tamanho(topoPilha);
+		if(topoPilha != null)
+			return tamanho(topoPilha);
+		return 0;
 	}
 	
 	private Processo get(int i, Processo p) {
@@ -66,16 +68,6 @@ public class Pilha {
 		return get(i, topoPilha);
 	}
 	
-	public String toString(Processo p) {
-		StringBuilder builder = new StringBuilder();
-		int tamanho = tamanho();
-		Processo aux = p;
-//		for(int i=0; i<3; i++) {
-//			builder.append(aux.getProximo());
-//			aux = aux.getProximo();
-//		}
-		return topoPilha.toString();
-	}
 
 	public Processo getTopoPilha() {
 		return topoPilha;
@@ -87,11 +79,6 @@ public class Pilha {
 	
 	@Override
 	public String toString() {
-//		StringBuilder builder = new StringBuilder();
-//		builder.append("Pilha [");
-//		builder.append(toString(topoPilha));
-//		builder.append("]");
-//		return builder.toString();
 		return topoPilha.toString();
 	}
 	

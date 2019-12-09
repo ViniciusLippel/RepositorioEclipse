@@ -1,12 +1,9 @@
 package trabalhoFinal;
 
 public class Mesa {
-	private boolean emUso;
+	private Processo processo;
+	private Funcionario funcionario;
 	private Mesa proxima;
-	
-	public Mesa() {
-		emUso = false;
-	}
 	
 	public Mesa getProxima() {
 		return proxima;
@@ -14,20 +11,32 @@ public class Mesa {
 	public void setProxima(Mesa proxima) {
 		this.proxima = proxima;
 	}
-	public boolean isEmUso() {
-		return emUso;
+	public Processo getProcesso() {
+		return processo;
 	}
-	public void setEmUso(boolean emUso) {
-		this.emUso = emUso;
+	public void setProcesso(Processo processo) {
+		this.processo = processo;
+	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	
+	public boolean emUso() {
+		if(processo != null)
+			return true;
+		return false;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Mesa [emUso=");
-		builder.append(emUso);
-		builder.append(", proxima=");
-		builder.append(proxima);
+		builder.append("Mesa [processo=");
+		builder.append(processo);
+		builder.append(", funcionario=");
+		builder.append(funcionario);
 		builder.append("]");
 		return builder.toString();
 	}
